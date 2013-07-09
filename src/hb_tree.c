@@ -117,11 +117,13 @@ hb_dict_new(dict_compare_func cmp_func, dict_delete_func del_func)
 size_t
 hb_tree_free(hb_tree* tree)
 {
+    const size_t count = 0;
+    
     ASSERT(tree != NULL);
 
-    if (!tree->root)
-	return 0;
-    const size_t count = hb_tree_clear(tree);
+    if (tree->root)
+	count = hb_tree_clear(tree);
+
     FREE(tree);
     return count;
 }
